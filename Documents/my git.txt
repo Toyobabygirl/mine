@@ -1,0 +1,72 @@
+
+DELL@DESKTOP-R0APV1A MINGW64 ~/Documents/Arduino (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   th/th.ino
+
+
+DELL@DESKTOP-R0APV1A MINGW64 ~/Documents/Arduino (main)
+$ git add ^C
+
+DELL@DESKTOP-R0APV1A MINGW64 ~/Documents/Arduino (main)
+$ git add   th/th.ino
+
+DELL@DESKTOP-R0APV1A MINGW64 ~/Documents/Arduino (main)
+$ git commit -m " deleted line 132 of the code"
+[main 6736416]  deleted line 132 of the code
+ 1 file changed, 36 insertions(+), 41 deletions(-)
+
+DELL@DESKTOP-R0APV1A MINGW64 ~/Documents/Arduino (main)
+$ git push origin main
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 874 bytes | 874.00 KiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/Toyobabygirl/first-project.git
+   2b25f38..6736416  main -> main
+
+DELL@DESKTOP-R0APV1A MINGW64 ~/Documents/Arduino (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   th/th.ino
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+DELL@DESKTOP-R0APV1A MINGW64 ~/Documents/Arduino (main)
+$ git add^C
+
+DELL@DESKTOP-R0APV1A MINGW64 ~/Documents/Arduino (main)
+$ git add  th/th.ino
+warning: in the working copy of 'th/th.ino', LF will be replaced by CRLF the next time Git touches it
+
+DELL@DESKTOP-R0APV1A MINGW64 ~/Documents/Arduino (main)
+$ git commit -m "commented line 23"
+[main 46944dc] commented line 23
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+DELL@DESKTOP-R0APV1A MINGW64 ~/Documents/Arduino (main)
+$ git push origin main
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 345 bytes | 345.00 KiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/Toyobabygirl/first-project.git
+   6736416..46944dc  main -> main
+
+DELL@DESKTOP-R0APV1A MINGW64 ~/Documents/Arduino (main)
+$
