@@ -1,25 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>  
 #include <string.h> 
- // For storing the allocation details
-struct Allocation{
-    char type[30];
-    int A;
-    int Amountofbyteused;
-
-};
 
  int main() {
-    int totalbytecapacity;
-    int memoryused = 0;
-    int memoryavailable;
+    int total_byte_capacity;
+    int memory_used = 0;
+    int memory_available;
      
 
-    printf("pleace enter the total byte capacity:   ");
+    printf("pleace enter the total byte capacity: ");
 
-    scanf("%d",&totalbytecapacity);
+    scanf("%d",&total_byte_capacity);
+    getchar() != '\n';
 
-    if (scanf("%d", &totalbytecapacity) !=1 || totalbytecapacity <= 0){
+    if (scanf("%d", &total_byte_capacity) !=1 || total_byte_capacity <= 0){
 
         printf("the total byte of %d you inputed is not valid. \n");
         
@@ -27,21 +21,21 @@ struct Allocation{
        }
 
        // Allocating the virtual hard drive 
-       char *virtualDrive = (char *)malloc(totalbytecapacity);
-        if (virtualDrive == NULL) { 
+       char *ptr = (char *)malloc(total_byte_capacity);
+        if (ptr == NULL) { 
             printf("Error: Memory allocation failed.\n");
              return 1;
              }
-    memoryavailable = totalbytecapacity;
+    memory_available = total_byte_capacity;
 
 
-    int N;
+    int space_number;
     printf("YOUR VIRTUAL HARD DRIVE.\n");
     printf("please input your memory allocation: \n");
      while (1) {
-        printf("Enter N: ");
+        printf("Enter space number : ");
 
-        if (scanf("%d", &N) != 1) {
+        if (scanf("%d", &space_number) != 1) {
             printf("Error: Invalid input.\n");
             
             // Clear invalid input
@@ -50,80 +44,73 @@ struct Allocation{
         }
 
 
-        char dataType[30];
-        int A;
-        int sizePercharacter = 0;
+        char data_type[30];
+        int space_type;
+        int size_Per_character = space_type;
 
-        printf("Enter data type (char/int/float/double): ");
-        scanf("%s", dataType);
+        // printf("Enter data type /n charpress 1 /int press 2/float press 3/double press 4: \n");
+        printf("Enter data type\n 1. char\n2. int\n3. float\n4. double\n");
+        scanf("%s", data_type);
 
-        printf("Enter number of spaces required: ");
         
-        if (scanf("%d", &A) != 1 || A <= 0) {
-            printf("Invalid number.\n");
-            getchar() != '\n';
-            continue;
+    // Determine size of data type
+     if (scanf("%s, &space_type") == 1){
+            size_Per_character = sizeof(char);
         }
-         // Determine size of data type
-        if (strcmp(dataType, "char") == 0) {
-            sizePercharacter = sizeof(char);
+        else if (scanf("%s, &space_type") == 2){
+            size_Per_character = sizeof(int);
         }
-        else if (strcmp(dataType, "int") == 0) {
-            sizePercharacter = sizeof(int);
+        else if (scanf("%s, &space_type") == 3){
+            size_Per_character = sizeof(float);
         }
-        else if (strcmp(dataType, "float") == 0) {
-            sizePercharacter = sizeof(float);
-        }
-        else if (strcmp(dataType, "double") == 0) {
-            sizePercharacter = sizeof(double);
+        else if (scanf("%s, &space_type") == 4){
+            size_Per_character = sizeof(double);
         }
         else {
             printf("Error: Data type unsuported.\n");
             continue;
         }
 
-        int requiredMemory = sizePercharacter * A;
+        int required_memory = size_Per_character * space_type;
 
          // Check if enough memory exists
 
-        if (requiredMemory > memoryavailable) {
+        if (required_memory > memory_available) {
             printf("Memory allocation failed!\n");
             printf("Not enough available memory.\n");
-            printf("Requested: %d bytes\n", requiredMemory);
-            printf("Available: %d bytes\n", memoryavailable);
+            printf("Requested: %d bytes\n", required_memory);
+            printf("Available: %d bytes\n", memory_available);
             continue;
         }
 
         // Allocate memory from virtual drive
-        void *ptr = malloc(requiredMemory);
-
-        if (ptr == NULL) {
-            printf("Error: Dynamic allocation failed.\n");
-            continue;
-        }
-
+    //    printf("allocated memory address: ",(void*)ptr);
+    //   // void* prt(required_memory=memory_used, required_memory<memory_available, required_memory++);
+    //    for (int memory_available = 0; memory_available < required_memory; memory_available++) {
+    //     ptr[memory_available] = (required_memory + 1) * required_memory; 
+    // }
+       char *current_ptr_position = ptr + memory_used;
+       printf("Current pointer position: %p\n", (void *)current_ptr_position);
         // Update memory statistics
-        memoryused += requiredMemory;
-        memoryavailable = totalbytecapacity - memoryused;
+        memory_used += required_memory;
+        memory_available = total_byte_capacity - memory_used;
 
         // Display allocation success
         printf("\nMemory allocated is successfully!\n");
-        printf("Data Type: %s\n", dataType);
-        printf("Spaces Allocated: %d\n", A);
-        printf("Memory Used for Request: %d bytes\n", requiredMemory);
+        printf("Data Type: %d\n", space_type);
+        printf("Spaces Allocated: %d\n", space_number);
+        printf("Memory Used for Request: %d bytes\n", required_memory);
 
-        // Display memory statistics
+        // Display memory in bytes
         printf("\n MEMORY STATUS \n");
-        printf("Total Memory : %d bytes\n", totalbytecapacity);
-        printf("Used Memory  : %d bytes\n", memoryused);
-        printf("Free Memory  : %d bytes\n", memoryavailable);
+        printf("Total Memory : %d bytes\n", total_byte_capacity);
+        printf("Used Memory  : %d bytes\n", memory_used);
+        printf("Free Memory  : %d bytes\n", memory_available);
 
-        // Free allocated block after simulation
-        free(ptr);
     }
 
     // Free virtual hard drive memory
-    free(virtualDrive);
+    free(ptr);
 
     return 0;
 
