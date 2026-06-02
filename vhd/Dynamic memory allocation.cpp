@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>   
+#include <stdlib.h>  
+#include <string.h> 
  // For storing the allocation details
 struct Allocation{
     char type[30];
@@ -35,9 +36,9 @@ struct Allocation{
 
 
     int N;
+    printf("YOUR VIRTUAL HARD DRIVE.\n");
+    printf("please input your memory allocation: \n");
      while (1) {
-        printf("\nYOUR VIRTUAL HARD DRIVE.\n");
-        printf("please input your memory allocation:\n");
         printf("Enter N: ");
 
         if (scanf("%d", &N) != 1) {
